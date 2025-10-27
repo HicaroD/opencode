@@ -15,15 +15,6 @@ Please provide or I will analyze:
 3. Build and test commands
 4. Code style and patterns used
 
-Project structure:
-!`find . -type f -name "*.json" -o -name "*.yaml" -o -name "*.toml" -o -name "*.md" | grep -E "(package|composer|requirements|Cargo|go.mod|pom|build|README)" | head -20`
-
-Directory overview:
-!`tree -L 2 -I 'node_modules|vendor|dist|build|target|bin|obj|coverage|.git|__pycache__|venv|env'`
-
-Recent changes:
-!`git log --oneline -5 2>/dev/null || echo "Not a git repository"`
-
 ## Planning Requirements
 
 Based on the provided context and task, create a structured plan with:

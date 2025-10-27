@@ -17,7 +17,7 @@ Look back in the conversation history to find the most recent message containing
 If no plan is found in recent conversation:
 
 ```
-❌ ERROR: No implementation plan found in conversation context.
+ERROR: No implementation plan found in conversation context.
 Please run /plan first to create a plan, then run /execute.
 ```
 
@@ -37,7 +37,7 @@ Before starting, verify:
 
    - Required tools are available
    - Dependencies are installed
-   - Working directory is clean: !`git status --short 2>/dev/null || echo "Not a git repo"`
+   - Working directory is clean: `git status --short 2>/dev/null || echo "Not a git repo"`
 
 2. **Plan validity**
 
@@ -46,7 +46,7 @@ Before starting, verify:
    - Commands reference is complete from plan
 
 3. **Backup current state**
-   - Current git status: !`git status`
+   - Current git status: `git status`
    - Suggest creating git commit or stash before proceeding
 
 ## Execution Loop
@@ -56,15 +56,12 @@ For each task in execution order:
 ### Step 1: Task Initialization
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔨 TASK-{number}: {title}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK-{number}: {title}
 Type: {type}
 Complexity: {complexity}
 Files: {files}
 Dependencies: {deps}
 Status: EXECUTING
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 - Display full task details
@@ -153,10 +150,9 @@ After implementation, verify:
 If verification passes:
 
 ```
-✅ TASK-{number}: COMPLETED
-   Files modified: {list}
-   Tests: PASSING
-   Time taken: {duration}
+TASK-{number}: COMPLETED
+Files modified: {list}
+Time taken: {duration}
 ```
 
 Mark task as completed in memory and proceed to next task.
@@ -164,9 +160,9 @@ Mark task as completed in memory and proceed to next task.
 If verification fails:
 
 ```
-❌ TASK-{number}: FAILED
-   Error: {error description}
-   Files affected: {list}
+TASK-{number}: FAILED
+Error: {error description}
+Files affected: {list}
 ```
 
 **Failure handling:**
@@ -224,9 +220,8 @@ If a task fails:
 After all tasks completed (or stopped):
 
 ```
-╔══════════════════════════════════════════╗
-║     EXECUTION SUMMARY                    ║
-╚══════════════════════════════════════════╝
+
+EXECUTION SUMMARY
 
 Status: {COMPLETED|PARTIAL|FAILED}
 Tasks Completed: {count}/{total}
@@ -242,9 +237,6 @@ Files Modified: {count}
 
 Files Deleted: {count}
   - {list of files}
-
-Test Results:
-  {output of test command}
 
 Build Status:
   {output of build command}
@@ -284,8 +276,8 @@ If user wants to rollback:
 
 1. Show what would be reverted
 2. Confirm before executing
-3. Use git to restore: !`git checkout -- {files}`
-4. Or restore from stash: !`git stash pop`
+3. Use git to restore: `git checkout -- {files}`
+4. Or restore from stash: `git stash pop`
 5. Verify rollback was successful
 
 ## Execution Summary
