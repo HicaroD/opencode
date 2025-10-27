@@ -4,203 +4,137 @@ agent: plan
 model: anthropic/claude-sonnet-4-5
 ---
 
-Create a comprehensive implementation plan for: $ARGUMENTS
+Create a comprehensive implementation plan for:
 
-## Project Context
+$ARGUMENTS
 
-Please provide or I will analyze:
+## Analysis Phase
 
-1. Technology stack and framework
-2. Project structure and conventions
-3. Build and test commands
-4. Code style and patterns used
+Analyze the project:
 
-## Planning Requirements
+- Technology stack and framework
+- Project structure and conventions
+- Fundamental commands (Build/test)
+- Code style and patterns
 
-Based on the provided context and task, create a structured plan with:
+## Plan Structure
 
-### 1. Requirements Analysis
+### 1. Overview & Requirements
 
-- Feature description and scope
-- User stories or acceptance criteria
+- Feature scope and acceptance criteria
 - Business rules and constraints
-- Non-functional requirements (performance, security, etc.)
+- Non-functional requirements
 
 ### 2. Technical Design
 
-- High-level architecture approach
-- Components/modules to create or modify
-- Data structures and models
-- Integration points and dependencies
-- Design patterns applicable
+- Architecture approach
+- Components to create/modify
+- Data models and integration points
+- Applicable design patterns
 
-### 3. Implementation Tasks
-
-Create a numbered task list where each task is:
-
-- **Atomic**: Can be completed independently
-- **Clear**: Has explicit inputs and outputs
-- **Testable**: Has verifiable completion criteria
+### 3. Tasks
 
 Format each task as:
 
 ```
-TASK-{number}: {Clear, action-oriented title}
-Type: [CREATE|MODIFY|DELETE|REFACTOR|TEST|DOCUMENT]
-Files: {list of file paths}
-Description: {detailed what and how}
-Acceptance Criteria:
-  - {criterion 1}
-  - {criterion 2}
-Dependencies: [TASK-X, TASK-Y] or [None]
-Complexity: [XS|S|M|L|XL]
-Estimated Time: {rough estimate}
+TASK-{n}: {Action-oriented title}
+Type: CREATE|MODIFY|DELETE|REFACTOR|TEST|DOCUMENT
+Files: {file paths}
+Description: {what and how}
+Acceptance Criteria: {testable criteria}
+Dependencies: [TASK-X] or [None]
+Complexity: XS|S|M|L|XL
 Status: PENDING
 ```
 
-### 4. Dependency Graph
+### 4. Execution Order
 
-Show task dependencies and suggest optimal execution order:
-
-```
-TASK-1 (no deps)
-  ├─> TASK-2 (depends on 1)
-  └─> TASK-3 (depends on 1)
-        └─> TASK-4 (depends on 3)
-```
+Show dependency graph and optimal sequence.
 
 ### 5. Risk Analysis
 
-Identify potential issues:
-
-- **Technical risks**: Complex implementations, unknowns
-- **Breaking changes**: Impact on existing functionality
-- **Performance considerations**: Bottlenecks, scalability
-- **Security implications**: Vulnerabilities, data exposure
-- **Mitigation strategies**: How to address each risk
+- Technical risks and unknowns
+- Breaking changes impact
+- Performance/security considerations
+- Mitigation strategies
 
 ### 6. Testing Strategy
 
-Define testing approach:
+- Unit/Integration/E2E test requirements
+- Manual verification steps
+- Required test data
 
-- **Unit tests**: What needs unit test coverage
-- **Integration tests**: System interaction tests needed
-- **E2E tests**: User flow tests required
-- **Manual testing**: Steps for manual verification
-- **Test data**: Required fixtures or mock data
+### 7. Rollback Plan
 
-### 7. Rollback Strategy
+How to safely revert changes if needed.
 
-- How to undo changes if something goes wrong
-- Safe points for incremental rollback
-- Database migration reversal (if applicable)
-
-## Output Format
-
-Output the plan directly in the conversation in a structured format that the `/execute` command can parse and follow.
-
-The plan should be:
-
-- **Self-contained**: All info needed for execution
-- **Technology-specific**: Include actual commands for the project
-- **Actionable**: Executor can follow without ambiguity
-- **Traceable**: Each task has unique ID for tracking
-- **In-context**: Stays in conversation history for `/execute` to reference
-
-## Plan Structure Template
-
-Use this exact structure so `/execute` can parse it:
+## Output Template
 
 ```markdown
 # IMPLEMENTATION PLAN: {Feature Name}
 
-**Created**: {timestamp}
 **Status**: READY_FOR_EXECUTION
-**Technology Stack**: {detected or specified}
-**Estimated Total Time**: {sum of task estimates}
-
----
+**Stack**: {technology}
+**Est. Time**: {total}
 
 ## 1. OVERVIEW
 
-{High-level description of what will be implemented}
+{What will be implemented}
 
 ## 2. REQUIREMENTS
 
-{Detailed requirements and acceptance criteria}
+{Acceptance criteria}
 
-## 3. TECHNICAL DESIGN
+## 3. DESIGN
 
-{Architecture approach, patterns, and design decisions}
+{Architecture and patterns}
 
 ## 4. TASKS
 
-### TASK-1: {Clear, action-oriented title}
+### TASK-1: {Title}
 
-- **Type**: [CREATE|MODIFY|DELETE|REFACTOR|TEST|DOCUMENT]
-- **Files**: {list of file paths}
-- **Description**: {detailed what and how}
-- **Acceptance Criteria**:
-  - {criterion 1}
-  - {criterion 2}
-- **Dependencies**: [None] or [TASK-X, TASK-Y]
-- **Complexity**: [XS|S|M|L|XL]
-- **Estimated Time**: {estimate}
-
-### TASK-2: {title}
-
-{... repeat for all tasks ...}
+- **Type**: {type}
+- **Files**: {paths}
+- **Description**: {details}
+- **Acceptance**: {criteria}
+- **Dependencies**: {tasks}
+- **Complexity**: {size}
 
 ## 5. EXECUTION ORDER
 
-Based on dependencies:
+1. TASK-1
+2. TASK-2 (→ TASK-1)
+3. TASK-3, TASK-4 (→ TASK-2)
 
-1. TASK-1 (no dependencies)
-2. TASK-2 (depends on TASK-1)
-3. TASK-3, TASK-4 (can run after TASK-2)
-4. TASK-5 (depends on TASK-3, TASK-4)
+## 6. RISKS
 
-## 6. RISKS & MITIGATION
+- {Risk} → {Mitigation}
 
-- **Risk 1**: {description} → Mitigation: {strategy}
-- **Risk 2**: {description} → Mitigation: {strategy}
+## 7. TESTING
 
-## 7. TESTING STRATEGY
+- **Unit**: {coverage}
+- **Integration**: {tests}
+- **Manual**: {steps}
 
-- **Unit Tests**: {what needs coverage}
-- **Integration Tests**: {what needs testing}
-- **Manual Testing**: {steps to verify}
+## 8. COMMANDS
 
-## 8. COMMANDS REFERENCE
+- Build: {cmd}
+- Test: {cmd}
+- Run: {cmd}
 
-- **Build**: {command to build project}
-- **Test**: {command to run tests}
-- **Lint**: {command to run linter}
-- **Format**: {command to format code}
-- **Run**: {command to run application}
+## 9. ROLLBACK
 
-## 9. ROLLBACK PLAN
-
-{How to safely undo changes if needed}
+{Undo strategy}
 
 ---
 
-**IMPORTANT**: This plan is now ready for execution.
-To execute, simply run: `/execute`
-The executor will read this plan from the conversation context.
+**Ready for execution with `/execute`**
 ```
 
-## Additional Analysis
+## Best Practices
 
-Before creating the plan, analyze:
-
-- Existing codebase patterns and conventions
-- Similar features already implemented
-- Team coding standards (if documented)
-- Configuration files for technology hints
-
-Provide recommendations on:
-
-- Code organization best practices for this stack
-- Potential refactoring opportunities
-- Technical debt considerations
+- Make tasks atomic and testable
+- Include actual commands for the stack
+- Keep plan self-contained
+- Analyze existing codebase patterns
+- Stay in conversation for `/execute` parsing
